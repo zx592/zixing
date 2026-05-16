@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>异度夜班</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#08080c;color:#d8d8e0;font-family:"微软雅黑",sans-serif;padding:16px}
+.game-box{max-width:600px;margin:0 auto;background:#111;padding:20px;border-radius:12px;border:1px solid #333}
+h2{color:#bb4444;text-align:center;margin-bottom:16px;letter-spacing:2px}
+.story-text{font-size:15px;min-height:160px;margin-bottom:20px;line-height:1.8}
+.btn{width:100%;background:#202030;color:#eee;border:none;padding:12px;margin:6px 0;border-radius:8px;font-size:15px}
+.btn:active{background:#3a2222}
+.tip{color:#888;font-size:13px;margin-top:12px}
+.end-text{color:#f66;font-weight:bold}
+.hide-win{color:#7d9}
+</style>
+</head>
+<body>
+<div class="game-box">
+<h2>异度夜班</h2>
+<div class="story-text" id="story">
+【第一夜 · 初始异变】
+你是老写字楼夜班监控员。
+凌晨01:17，大楼早已清场，整栋楼绝对只有你一人。
+
+你低头喝水两秒。
+
+八台覆盖全楼的监控，同一帧里同步多出一个缓步人影。
+
+【科学无解】
+1.无进出记录，大楼完全封闭
+2.人影无阴影无反光
+3.多层监控动作100%同步
+4.行走无声、不触发任何设备
+</div>
+<div id="btns">
+<button class="btn" onclick="s11()">1.调取监控回放</button>
+<button class="btn" onclick="s12()">2.前往楼道实地查看</button>
+</div>
+<div class="tip" id="tip">提示：你的选择将触发不同空间规则</div>
+</div>
+<script>
+let tape=0,key=0,bless=0;
+function s11(){
+document.getElementById("story").innerText=`你打开回放。
+两秒录像被整块抹除，黑屏。
+系统时间乱跳：01:19→04:58→23:01。
+
+门外响起缓慢踱步声，停在门口不动。
+
+抽屉自动弹开，露出一卷老旧录像带。`;tape=1;
+document.getElementById("btns").innerHTML=
+`<button class="btn" onclick="s111()">1.开门查看</button>
+<button class="btn" onclick="s112()">2.原地不动看录像带</button>`;
+}
+function s12(){
+document.getElementById("story").innerText=`你走出监控室。
+楼道空无一人，人影消失。
+
+三楼转角出现悖论：
+墙面多出陌生门牌；你往前走，影子停在原地。
+
+角落消防柜上，放着一把铜钥匙。`;key=1;
+document.getElementById("btns").innerHTML=
+`<button class="btn" onclick="s121()">1.立刻停下脚步</button>
+<button class="btn" onclick="s122()">2.继续往前走</button>`;
+}
+function s111(){
+document.getElementById("story").innerHTML=
+`<span class="end-text">【结局1：时空滞留】</span><br>
+开门瞬间空间折叠，楼层无限重复。
+你永远走不到尽头，成为时间夹缝的访客。`;
+document.getElementById("btns").innerHTML="";
+}
+function s112(){
+document.getElementById("story").innerText=`你拿起录像带。
+画面是今晚监控室：“你”低头喝水，无限循环。
+窗外站满和监控人影一样的人。
+
+门外脚步声退后。
+你获得进入第二层异变资格。`;
+document.getElementById("btns").innerHTML=
+`<button class="btn" onclick="s2()">进入深夜第二层异变</button>`;
+}
+function s121(){
+document.getElementById("story").innerText=`你立刻停步。
+三秒后影子归位，异常门牌消失。
+捡起铜钥匙：四楼禁地储藏室。
+
+楼道深处传来机器运转声。
+异变蛰伏，并未结束。`;
+document.getElementById("btns").innerHTML=
+`<button class="btn" onclick="s2()">进入深夜第二层异变</button>`;
+}
+function s122(){
+document.getElementById("story").innerHTML=
+`<span class="end-text">【结局2：意识同化】</span><br>
+你无视悖论继续走。
+你的频率和“未知存在”对齐。
+天亮后，你成为每晚监控里无限行走的人影。`;
+document.getElementById("btns").innerHTML="";
+}
+function s2(){
+document.getElementById("story").innerText=`【第二夜 · 深层规则崩坏】
+凌晨02:43
+
+灯光无序闪烁，物品发烫。
+广播响起空白白噪音。
+
+事实：楼内面积远大于楼外体积。
+外部四层，内部出现六层楼梯。
+
+选择：四楼储藏室、五楼回廊。`;
+document.getElementById("btns").innerHTML=
+`<button class="btn" onclick="s21()">1.用钥匙进四楼储藏室</button>
+<button class="btn" onclick="s22()">2.前往五楼回廊</button>`;
+}
+function s21(){
+document.getElementById("story").innerText=`储藏室积满灰尘。
+中央神龛放着褪色护身符。
+墙面贴满历年夜班截图：每张都有同一个人影。
+
+拿起护身符，全身冰冷，
+耳边无数脚步声响起又消失。`;bless=1;
+document.getElementById("btns").innerHTML=
+`<button class="btn" onclick="s3()">前往终极核心区域</button>`;
+}
+function s22(){
+document.getElementById("story").innerText=`五楼回廊不在图纸上。
+地面干净无灰。
+
+尽头一面镜子：
+镜里的你站着不动，现实的你仍在走。
+镜面成像规则崩塌。`;
+document.getElementById("btns").innerHTML=
+`<button class="btn" onclick="s22e()">继续凝视镜面</button>`;
+}
+function s22e(){
+document.getElementById("story").innerHTML=
+`<span class="end-text">【结局3：镜面置换】</span><br>
+你与镜中存在身份互换。
+现实的你消失，镜中多了永远徘徊的夜班人。`;
+document.getElementById("btns").innerHTML="";
+}
+function s3(){
+document.getElementById("story").innerText=`【终极阶段 · 异度真相】
+你集齐：录像带、钥匙、护身符。
+
+凌晨03:00，整栋楼静止、断电、时间停止。
+
+真相：楼本身就是活着的空间悖论。
+人影不是别人，是未来无数次轮回的你。
+
+最后选择：`;
+document.getElementById("btns").innerHTML=
+`<button class="btn" onclick="trueend()">1.斩断时空（真结局）</button>
+<button class="btn" onclick="loopend()">2.永恒轮回（崩坏结局）</button>`;
+}
+function trueend(){
+document.getElementById("story").innerHTML=
+`<span class="hide-win">【真结局：脱离悖论】</span><br>
+护身符抵消空间绑定。
+异象清零，时间归位。
+天亮正常下班，你是百年来唯一逃离轮回的人。`;
+document.getElementById("btns").innerHTML="";
+}
+function loopend(){
+document.getElementById("story").innerHTML=
+`<span class="end-text">【结局：永恒闭环】</span><br>
+你接纳轮回。
+
+第二天夜里，新夜班员
+会在监控里看见缓慢行走的人影——
+那个人，就是现在的你。`;
+document.getElementById("btns").innerHTML="";
+}
+</script>
+</body>
+</html>
